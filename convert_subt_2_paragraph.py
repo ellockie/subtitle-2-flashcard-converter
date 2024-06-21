@@ -8,7 +8,9 @@ REGEXES = [
     # Replace single newlines within subtitle blocks with spaces
     (r'(?<!\n)\n(?!\n)', ' '),
     # Replace double newlines with a space to form paragraphs
-    (r'\n{2,}', ' ')
+    (r'\n{2,}', ' '),
+    # Inserts two newlines after each full stop followed by a space and a non-whitespace character
+    (r'(\.\s*)(?=\S)', '.\n\n')
 ]
 
 def process_subtitles(subtitle_text):
