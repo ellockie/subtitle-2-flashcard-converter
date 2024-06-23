@@ -1,7 +1,7 @@
 import os
 import hashlib
 from datetime import datetime
-
+import shutil
 
 class FileHandler:
     def __init__(self, config):
@@ -10,6 +10,7 @@ class FileHandler:
         self._ensure_results_folder_exists()
         self.input_hash = self._calculate_input_hash()
         self.output_folder = self._create_output_folder()
+        self._copy_input_file()
 
     def _ensure_results_folder_exists(self):
         """Create the _results folder if it doesn't exist."""
@@ -33,6 +34,15 @@ class FileHandler:
         full_path = os.path.join(self.results_folder, folder_name)
         os.makedirs(full_path, exist_ok=True)
         return full_path
+
+    def _copy_input_file(self):
+        """Copy the input file to the output folder if it exists."""
+        if os.path.exists(self.config.input_file):
+            destination = os.path.join(self.output_folder, self.config.raw_input_file)
+            shutil.copy2(self.config.input_file, destination)
+            print(f"Copied input file to {destination}")
+        else:
+            print(f"Warning: Input file {self.config.input_file} not found. Skipping copy.")
 
     def save_output(self, output, output_file, output_label):
         """Save the generated output to the specified output file."""

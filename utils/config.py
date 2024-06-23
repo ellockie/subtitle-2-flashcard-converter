@@ -9,6 +9,7 @@ class Config:
 
         # File paths
         self.input_file = '_input.txt'
+        self.raw_input_file = 'raw_input.txt'
         self.processed_text_file = 'processed_text.txt'
         self.response_file = "response.txt"
         self.flashcards_file = '_flashcards.txt'
