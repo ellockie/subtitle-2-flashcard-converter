@@ -21,11 +21,9 @@ class Config:
         self.prompt_static = """Based on the provided subtitles from a video, which is part of an AWS Associate Developer certification preparation course, create a set of flashcards of any item of knowledge that may be checked in the AWS Associate Developer exam.
 
 Generate flashcards in the following format:
-1.
 Q: question_1
 A: answer_1
 
-2.
 Q: question_2
 A: answer_2
 # and so on
