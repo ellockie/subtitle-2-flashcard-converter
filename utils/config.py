@@ -9,8 +9,8 @@ class Config:
 
         # File paths
         self.input_file = '_input.txt'
-        self.processed_text_file = '_processed_text.txt'
-        self.response_file = "_response.txt"
+        self.processed_text_file = 'processed_text.txt'
+        self.response_file = "response.txt"
         self.flashcards_file = '_flashcards.txt'
 
         # OpenAI configuration

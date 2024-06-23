@@ -1,8 +1,9 @@
 import re
 
 class SubtitleProcessor:
-    def __init__(self, config):
+    def __init__(self, config, file_handler):
         self.config = config
+        self.file_handler = file_handler
         # Define regex patterns for subtitle processing
         self.REGEXES = [
             # Remove the initial WEBVTT block and any subsequent metadata before the first subtitle block
@@ -21,7 +22,9 @@ class SubtitleProcessor:
         """Load subtitle text from input file and process it."""
         with open(self.config.input_file, 'r', encoding='utf-8') as file:
             subtitle_text = file.read()
-        return self._process_subtitles(subtitle_text)
+        processed_text = self._process_subtitles(subtitle_text)
+        self.file_handler.save_output(processed_text, self.config.processed_text_file, "Processed text")
+        return processed_text
 
     def _process_subtitles(self, subtitle_text):
         """Process subtitle text to convert it into paragraphs."""

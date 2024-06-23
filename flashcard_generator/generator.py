@@ -1,14 +1,14 @@
 from openai import OpenAI
 import pprint
-from utils.file_handler import FileHandler
+
 
 class FlashcardGenerator:
-    def __init__(self, config):
+    def __init__(self, config, file_handler):
         self.config = config
+        self.file_handler = file_handler
         self.client = OpenAI(api_key=self.config.api_key)
         # Customizing PrettyPrinter for logging
         self.pp = pprint.PrettyPrinter(indent=4, width=40, depth=2)
-        self.file_handler = FileHandler(config)
 
     def generate(self, processed_text):
         """Generate flashcards based on the processed text using the latest GPT model."""
@@ -27,4 +27,7 @@ class FlashcardGenerator:
         pretty_response = self.pp.pformat(chat_completion)
         self.file_handler.save_output(pretty_response, self.config.response_file, "Raw response")
 
-        return chat_completion.choices[0].message.content
+        flashcards = chat_completion.choices[0].message.content
+        self.file_handler.save_output(flashcards, self.config.flashcards_file, "Flashcards")
+
+        return flashcards
