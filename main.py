@@ -1,5 +1,5 @@
 from subtitle_processor.processor import SubtitleProcessor
-from flashcard_generator.generator import FlashcardGenerator
+from qa_generator.generator import QAGenerator
 from utils.file_handler import FileHandler
 from utils.config import Config
 
@@ -16,9 +16,9 @@ def main():
     plain_text = SP.get_plain_text_from_subtitles()
     print(f"Subtitle text has been loaded and processed into plain text")
 
-    # Generate flashcards
-    FG = FlashcardGenerator(config, file_handler)
-    flashcards = FG.generate(plain_text)
+    # Generate QAs
+    QAG = QAGenerator(config, file_handler)
+    qas = QAG.generate(plain_text)
 
     # Optionally add a description to the output folder
     # file_handler.add_description("some_description")

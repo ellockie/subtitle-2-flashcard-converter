@@ -2,7 +2,7 @@ from openai import OpenAI
 import pprint
 
 
-class FlashcardGenerator:
+class QAGenerator:
     def __init__(self, config, file_handler):
         self.config = config
         self.file_handler = file_handler
@@ -11,7 +11,7 @@ class FlashcardGenerator:
         self.pp = pprint.PrettyPrinter(indent=4, width=40, depth=2)
 
     def generate(self, processed_text):
-        """Generate flashcards based on the processed text using the latest GPT model."""
+        """Generate QAs based on the processed text using the latest GPT model."""
         prompt = f"{self.config.prompt_static}\n\n{processed_text}"
 
         print(f"Sending request...")
@@ -27,7 +27,7 @@ class FlashcardGenerator:
         pretty_response = self.pp.pformat(chat_completion)
         self.file_handler.save_output(pretty_response, self.config.response_file, "Raw response")
 
-        flashcards = chat_completion.choices[0].message.content
-        self.file_handler.save_output(flashcards, self.config.flashcards_file, "Flashcards")
+        qas = chat_completion.choices[0].message.content
+        self.file_handler.save_output(qas, self.config.qa_file, "QAs", True)
 
-        return flashcards
+        return qas

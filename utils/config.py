@@ -12,17 +12,19 @@ class Config:
         self.raw_input_file = 'raw_input.txt'
         self.processed_text_file = 'processed_text.txt'
         self.response_file = "response.txt"
-        self.flashcards_file = '_flashcards.txt'
-        self.compiled_flashcards_file = 'flashcards_compiled.txt'
+        self.qu_sets_subfolder = "qa_sets"
+        self.qa_file = '_qa_set.txt'
+        self.compiled_qa_file = 'qa_set_compiled.txt'
+        self.qa_4_anki_file = 'qa_4_anki.txt'
 
         # OpenAI configuration
         self.model = "gpt-3.5-turbo"
         self.api_key = os.environ.get("OPENAI_API_KEY")
 
-        # Prompt for flashcard generation
-        self.prompt_static = """Based on the provided subtitles from a video, which is part of an AWS Associate Developer certification preparation course, create a set of flashcards of any item of knowledge that may be checked in the AWS Associate Developer exam.
+        # Prompt for flashcard question-answers generation
+        self.prompt_static = """Based on the provided subtitles from a video, which is part of an AWS Associate Developer certification preparation course, create a set of flashcard questions & answers of any item of knowledge relevant in the AWS Associate Developer exam.
 
-Generate flashcards in the following format:
+Generate questions & answers in the following format:
 Q: question_1
 A: answer_1
 

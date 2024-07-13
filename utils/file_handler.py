@@ -33,6 +33,11 @@ class FileHandler:
 
         full_path = os.path.join(self.results_folder, folder_name)
         os.makedirs(full_path, exist_ok=True)
+
+        # Create QA sets subfolder
+        qa_sets_path = os.path.join(self.results_folder, folder_name, self.config.qu_sets_subfolder)
+        os.makedirs(qa_sets_path, exist_ok=True)
+
         return full_path
 
     def _copy_input_file(self):
@@ -44,12 +49,15 @@ class FileHandler:
         else:
             print(f"Warning: Input file {self.config.input_file} not found. Skipping copy.")
 
-    def save_output(self, output, output_file, output_label):
+    def save_output(self, output, output_file, output_label, is_qa_set=False):
         """Save the generated output to the specified output file."""
         file_name = os.path.basename(output_file)
-        full_path = os.path.join(self.output_folder, file_name)
+        if is_qa_set:
+            full_path = os.path.join(self.output_folder, self.config.qu_sets_subfolder, file_name)
+        else:
+            full_path = os.path.join(self.output_folder, file_name)
 
-        if file_name == self.config.flashcards_file:
+        if file_name == self.config.qa_file:
             full_path = self._get_versioned_filename(full_path)
 
         with open(full_path, 'w', encoding='utf-8') as file:
