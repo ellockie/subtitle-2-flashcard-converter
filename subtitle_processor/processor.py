@@ -18,13 +18,13 @@ class SubtitleProcessor:
             (r'(\.\s*)(?=\S)', '.\n\n')
         ]
 
-    def process(self):
+    def get_plain_text_from_subtitles(self):
         """Load subtitle text from input file and process it."""
         with open(self.config.input_file, 'r', encoding='utf-8') as file:
             subtitle_text = file.read()
-        processed_text = self._process_subtitles(subtitle_text)
-        self.file_handler.save_output(processed_text, self.config.processed_text_file, "Processed text")
-        return processed_text
+        plain_text = self._process_subtitles(subtitle_text)
+        self.file_handler.save_output(plain_text, self.config.processed_text_file, "Processed text")
+        return plain_text
 
     def _process_subtitles(self, subtitle_text):
         """Process subtitle text to convert it into paragraphs."""

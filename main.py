@@ -11,14 +11,14 @@ def main():
     # Initialize file handler for input/output operations
     file_handler = FileHandler(config)
 
-    # Process subtitles
-    subtitle_processor = SubtitleProcessor(config, file_handler)
-    processed_text = subtitle_processor.process()
-    print(f"Subtitle text has been loaded and processed")
+    # Create plain text from subtitles
+    SP = SubtitleProcessor(config, file_handler)
+    plain_text = SP.get_plain_text_from_subtitles()
+    print(f"Subtitle text has been loaded and processed into plain text")
 
     # Generate flashcards
-    flashcard_generator = FlashcardGenerator(config, file_handler)
-    flashcards = flashcard_generator.generate(processed_text)
+    FG = FlashcardGenerator(config, file_handler)
+    flashcards = FG.generate(plain_text)
 
     # Optionally add a description to the output folder
     # file_handler.add_description("some_description")

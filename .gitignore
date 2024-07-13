@@ -5,8 +5,5 @@
 
 # FILES
 
-/_input.txt
-/_processed_text.txt
-/_response.txt
-/_flashcards.txt
+/_input_subtitles.txt
 /.env

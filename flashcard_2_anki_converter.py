@@ -2,18 +2,20 @@ import os
 import re
 import sys
 
+from utils.config import Config
 
-def convert_flashcards(input_path):
+
+def convert_flashcards_to_anki(input_path):
     """
     Convert flashcards from the original format to Anki format.
 
-    :param input_path: Path to the folder containing 'flashcards.txt'
+    :param input_path: Path to the folder containing a compiled version of flashcards file (manually compiled)
     """
-    input_file = os.path.join(input_path, 'flashcards.txt')
+    input_file = os.path.join(input_path, Config.compiled_flashcards_file)
     output_file = os.path.join(input_path, 'flashcards_anki.txt')
 
     if not os.path.exists(input_file):
-        print(f"Error: 'flashcards.txt' not found in {input_path}")
+        print(f"Error: '{Config.compiled_flashcards_file}' not found in {input_path}")
         return
 
     with open(input_file, 'r', encoding='utf-8') as infile, open(output_file, 'w', encoding='utf-8') as outfile:
@@ -35,7 +37,7 @@ def convert_flashcards(input_path):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python flashcard_converter.py <path_to_folder>")
+        print("Usage: python flashcard_2_anki_converter.py <path_to_folder>")
         sys.exit(1)
 
     folder_path = sys.argv[1]
@@ -43,4 +45,4 @@ if __name__ == "__main__":
         print(f"Error: {folder_path} is not a valid directory")
         sys.exit(1)
 
-    convert_flashcards(folder_path)
+    convert_flashcards_to_anki(folder_path)

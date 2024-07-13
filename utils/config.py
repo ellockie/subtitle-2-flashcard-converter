@@ -8,11 +8,12 @@ class Config:
         load_dotenv()
 
         # File paths
-        self.input_file = '_input.txt'
+        self.input_file = '_input_subtitles.txt'
         self.raw_input_file = 'raw_input.txt'
         self.processed_text_file = 'processed_text.txt'
         self.response_file = "response.txt"
         self.flashcards_file = '_flashcards.txt'
+        self.compiled_flashcards_file = 'flashcards_compiled.txt'
 
         # OpenAI configuration
         self.model = "gpt-3.5-turbo"
