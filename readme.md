@@ -9,7 +9,7 @@
  - Copy the response 
 3. Paste into the input file
  - into: `_input_subtitles.txt`
-3. Run the generator, several times
+3. Run the generator, several times using the command: `docker-compose up --build`
 4. Pick the best QA sets
  - from: `_qa_set_v#.txt`
  - into: `qa_set_compiled.txt`
