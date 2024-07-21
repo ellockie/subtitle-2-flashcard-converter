@@ -27,7 +27,7 @@ class FileHandler:
         folder_name = f"{date_str}__{self.input_hash}"
 
         # Check if a folder with this hash already exists
-        existing_folders = [f for f in os.listdir(self.results_folder) if f.endswith(f"__{self.input_hash}")]
+        existing_folders = [f for f in os.listdir(self.results_folder) if f.find(f"__{self.input_hash}") >= 0]
         if existing_folders:
             folder_name = existing_folders[0]  # Use the existing folder
 
