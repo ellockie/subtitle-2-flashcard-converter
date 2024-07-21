@@ -1,7 +1,7 @@
 from subtitle_processor.processor import SubtitleProcessor
 from qa_generator.generator import QAGenerator
 from utils.file_handler import FileHandler
-from utils.config import Config
+from config.config import Config
 from utils.print_stats import count_qa_sets
 
 

@@ -1,5 +1,6 @@
 import re
 
+
 class SubtitleProcessor:
     def __init__(self, config, file_handler):
         self.config = config

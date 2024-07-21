@@ -18,22 +18,15 @@ class Config:
         self.qa_4_anki_file = 'qa_4_anki.txt'
 
         # OpenAI configuration
-        self.model = "gpt-3.5-turbo"
+        # self.model = "gpt-3.5-turbo"
+        self.model = "gpt-4o-mini"
         self.api_key = os.environ.get("OPENAI_API_KEY")
 
         # Prompt for flashcard question-answers generation
-        self.prompt_static = """Based on the provided subtitles from a video, which is part of an AWS Associate Developer certification preparation course, create a set of flashcard questions & answers of any item of knowledge relevant in the AWS Associate Developer exam.
+        with open("./config/query.txt", "r") as query_file:
+            query = query_file.read()
+            self.prompt_static = query
 
-Generate questions & answers in the following format:
-Q: question_1
-A: answer_1
-
-Q: question_2
-A: answer_2
-# and so on
-
-Subtitles:
-"""
 
         # Validate API key
         if not self.api_key:
