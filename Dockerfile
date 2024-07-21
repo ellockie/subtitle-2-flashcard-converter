@@ -12,7 +12,7 @@ RUN apk add --no-cache --virtual .build-deps gcc musl-dev \
     && pip install --no-cache-dir -r requirements.txt \
     && apk del .build-deps
 
-# Copy the rest of your application's code
+# Copy the rest of your application's code (diabled, to prevent image rebuilding on each edit)
 #COPY . .
 
 # Command to run your application

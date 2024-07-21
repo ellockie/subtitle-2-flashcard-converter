@@ -11,7 +11,7 @@ services:
         - "com.example.description=Subtitles 2 flashcard converter"
       tags:
         - "subtitles_2_flashcard_converter:latest"
-        - "subtitles_2_flashcard_converter:${VERSION:-dev}"
+#        - "subtitles_2_flashcard_converter:${VERSION:-dev}"
     volumes:
       - .:/app
     ports:

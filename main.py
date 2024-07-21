@@ -28,5 +28,5 @@ def main():
     # file_handler.add_description("some_description")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # Now run via Docker!
     main()
