@@ -1,4 +1,5 @@
 import re
+import os
 
 
 class SubtitleProcessor:
@@ -20,7 +21,13 @@ class SubtitleProcessor:
         ]
 
     def get_plain_text_from_subtitles(self):
-        """Load subtitle text from input file and process it."""
+        """Load subtitle text from input file and process it, or load from processed file if it exists."""
+        if os.path.exists(self.config.processed_text_file):
+            print(f"Loading processed text from existing file: {self.config.processed_text_file}")
+            with open(self.config.processed_text_file, 'r', encoding='utf-8') as file:
+                return file.read()
+
+        print(f"Processing subtitle file: {self.config.input_file}")
         with open(self.config.input_file, 'r', encoding='utf-8') as file:
             subtitle_text = file.read()
         plain_text = self._process_subtitles(subtitle_text)
