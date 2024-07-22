@@ -13,6 +13,7 @@ class Config:
         self.processed_text_file = 'processed_text.txt'
         self.response_file = "response.txt"
         self.qu_sets_subfolder = "qa_sets"
+        self.summary_file = 'summary.txt'
         self.qa_file = '_qa_set.txt'
         self.compiled_qa_file = 'qa_set_compiled.txt'
         self.qa_4_anki_file = 'qa_4_anki.txt'
@@ -23,9 +24,14 @@ class Config:
         self.api_key = os.environ.get("OPENAI_API_KEY")
 
         # Prompt for flashcard question-answers generation
-        with open("./config/query.txt", "r") as query_file:
+        with open("./config/query_qa.txt", "r") as query_file:
             query = query_file.read()
-            self.prompt_static = query
+            self.qa_prompt = query
+
+        # Prompt for content summary
+        with open("./config/query_summary.txt", "r") as query_file:
+            query = query_file.read()
+            self.summary_prompt = query
 
         # Validate API key
         if not self.api_key:

@@ -19,6 +19,9 @@ def main():
 
     # Generate QAs
     QAG = QAGenerator(config, file_handler)
+    # Generate summary
+    QAG.generate(plain_text, True)
+    # Generate QAs
     qas = QAG.generate(plain_text)
 
     # Print stats

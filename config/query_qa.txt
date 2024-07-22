@@ -1,0 +1,11 @@
+Based on the provided subtitles from a video, which is a part of an AWS Associate Developer certification preparation course, create a set of flashcard questions & answers of any item of knowledge relevant in the AWS Associate Developer exam.
+
+Generate questions & answers in the following format:
+Q: question_1
+A: answer_1
+
+Q: question_2
+A: answer_2
+# and so on
+
+Subtitles:

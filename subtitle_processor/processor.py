@@ -1,6 +1,8 @@
 import re
 import os
 
+from constants.constants import OUTPUT_TYPE
+
 
 class SubtitleProcessor:
     def __init__(self, config, file_handler):
@@ -31,7 +33,7 @@ class SubtitleProcessor:
         with open(self.config.input_file, 'r', encoding='utf-8') as file:
             subtitle_text = file.read()
         plain_text = self._process_subtitles(subtitle_text)
-        self.file_handler.save_output(plain_text, self.config.processed_text_file, "Processed text")
+        self.file_handler.save_output(plain_text, self.config.processed_text_file, OUTPUT_TYPE["Processed text"])
         return plain_text
 
     def _process_subtitles(self, subtitle_text):

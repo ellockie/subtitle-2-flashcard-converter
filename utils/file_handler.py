@@ -3,6 +3,9 @@ import hashlib
 from datetime import datetime
 import shutil
 
+from constants.constants import OUTPUT_TYPE
+
+
 class FileHandler:
     def __init__(self, config):
         self.config = config
@@ -49,10 +52,10 @@ class FileHandler:
         else:
             print(f"Warning: Input file {self.config.input_file} not found. Skipping copy.")
 
-    def save_output(self, output, output_file, output_label, is_qa_set=False):
+    def save_output(self, output, output_file, output_type):
         """Save the generated output to the specified output file."""
         file_name = os.path.basename(output_file)
-        if is_qa_set:
+        if output_type == OUTPUT_TYPE["QAs"]:
             full_path = os.path.join(self.output_folder, self.config.qu_sets_subfolder, file_name)
         else:
             full_path = os.path.join(self.output_folder, file_name)
@@ -62,7 +65,7 @@ class FileHandler:
 
         with open(full_path, 'w', encoding='utf-8') as file:
             file.write(output)
-        print(f"{output_label} saved to {full_path}")
+        print(f"{output_type} saved to {full_path}")
 
     def _get_versioned_filename(self, file_path):
         base, ext = os.path.splitext(file_path)
