@@ -27,7 +27,6 @@ class Config:
             query = query_file.read()
             self.prompt_static = query
 
-
         # Validate API key
         if not self.api_key:
             raise ValueError("API key not available")
