@@ -1,0 +1,5 @@
+Based on the provided subtitles from a video, which is a part of an AWS Associate Developer certification preparation course, create a mindmap extracting of all and any item of knowledge relevant in the AWS Associate Developer exam.
+
+Generate questions & answers in a mindmap format, where each 4-spaces indentation level denotes lower level in hierarchy.
+
+Subtitles:
