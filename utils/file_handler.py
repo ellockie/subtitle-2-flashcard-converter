@@ -38,7 +38,7 @@ class FileHandler:
         os.makedirs(full_path, exist_ok=True)
 
         # Create QA sets subfolder
-        qa_sets_path = os.path.join(self.results_folder, folder_name, self.config.qu_sets_subfolder)
+        qa_sets_path = os.path.join(self.results_folder, folder_name, self.config.qa_sets_subfolder)
         os.makedirs(qa_sets_path, exist_ok=True)
 
         return full_path
@@ -56,7 +56,7 @@ class FileHandler:
         """Save the generated output to the specified output file."""
         file_name = os.path.basename(output_file)
         if output_type == OUTPUT_TYPE["QAs"]:
-            full_path = os.path.join(self.output_folder, self.config.qu_sets_subfolder, file_name)
+            full_path = os.path.join(self.output_folder, self.config.qa_sets_subfolder, file_name)
         else:
             full_path = os.path.join(self.output_folder, file_name)
 
