@@ -26,8 +26,8 @@ class FileHandler:
             return hashlib.md5(file.read()).hexdigest()[:8]
 
     def _create_output_folder(self):
-        date_str = datetime.now().strftime("%Y-%m-%d")
-        folder_name = f"{date_str}__{self.input_hash}"
+        date_str = datetime.now().strftime("%Y-%m-%d_%H.%M.%S")
+        default_folder_name = f"{date_str}__{self.input_hash}"
 
         # Check if a folder with this hash already exists
         existing_folders = [f for f in os.listdir(self.results_folder) if f.find(f"__{self.input_hash}") >= 0]
