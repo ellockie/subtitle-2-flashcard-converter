@@ -22,7 +22,7 @@ class FileHandler:
             print(f"Created {self.results_folder} folder")
 
     def _calculate_input_hash(self):
-        with open(self.config.input_file, 'rb') as file:
+        with open(self.config.input_file, "rb") as file:
             return hashlib.md5(file.read()).hexdigest()[:8]
 
     def _create_output_folder(self):
@@ -30,23 +30,35 @@ class FileHandler:
         default_folder_name = f"{date_str}__{self.input_hash}"
 
         # Check if a folder with this hash already exists
-        existing_folders = [f for f in os.listdir(self.results_folder) if f.find(f"__{self.input_hash}") >= 0]
+        existing_folders = [
+            f
+            for f in os.listdir(self.results_folder)
+            if f.find(f"__{self.input_hash}") >= 0
+        ]
         if existing_folders:
             folder_name = existing_folders[0]  # Use the existing folder
         else:
             # Try to get user input, fall back to default if not possible
             try:
-                user_folder_name = input(f"Enter a name for the output folder (default: {default_folder_name}): ").strip()
-                folder_name = user_folder_name if user_folder_name else default_folder_name
+                user_folder_name = input(
+                    f"Enter a name for the output folder (default: {default_folder_name}): "
+                ).strip()
+                folder_name = (
+                    user_folder_name if user_folder_name else default_folder_name
+                )
             except EOFError:
-                print(f"Running in non-interactive environment. Using default folder name: {default_folder_name}")
+                print(
+                    f"Running in non-interactive environment. Using default folder name: {default_folder_name}"
+                )
                 folder_name = default_folder_name
 
         full_path = os.path.join(self.results_folder, folder_name)
         os.makedirs(full_path, exist_ok=True)
 
         # Create QA sets subfolder
-        qa_sets_path = os.path.join(self.results_folder, folder_name, self.config.qa_sets_subfolder)
+        qa_sets_path = os.path.join(
+            self.results_folder, folder_name, self.config.qa_sets_subfolder
+        )
         os.makedirs(qa_sets_path, exist_ok=True)
 
         return full_path
@@ -58,20 +70,24 @@ class FileHandler:
             shutil.copy2(self.config.input_file, destination)
             print(f"Copied input file to {destination}")
         else:
-            print(f"Warning: Input file {self.config.input_file} not found. Skipping copy.")
+            print(
+                f"Warning: Input file {self.config.input_file} not found. Skipping copy."
+            )
 
     def save_output(self, output, output_file, output_type):
         """Save the generated output to the specified output file."""
         file_name = os.path.basename(output_file)
         if output_type == OUTPUT_TYPE["QAs"]:
-            full_path = os.path.join(self.output_folder, self.config.qa_sets_subfolder, file_name)
+            full_path = os.path.join(
+                self.output_folder, self.config.qa_sets_subfolder, file_name
+            )
         else:
             full_path = os.path.join(self.output_folder, file_name)
 
-        if file_name == self.config.qa_file:
+        if file_name == self.config.qa_file or file_name == self.config.summary_file:
             full_path = self._get_versioned_filename(full_path)
 
-        with open(full_path, 'w', encoding='utf-8') as file:
+        with open(full_path, "w", encoding="utf-8") as file:
             file.write(output)
         print(f"{output_type} saved to {full_path}")
 
