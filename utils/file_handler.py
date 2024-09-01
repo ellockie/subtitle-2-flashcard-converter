@@ -33,6 +33,14 @@ class FileHandler:
         existing_folders = [f for f in os.listdir(self.results_folder) if f.find(f"__{self.input_hash}") >= 0]
         if existing_folders:
             folder_name = existing_folders[0]  # Use the existing folder
+        else:
+            # Try to get user input, fall back to default if not possible
+            try:
+                user_folder_name = input(f"Enter a name for the output folder (default: {default_folder_name}): ").strip()
+                folder_name = user_folder_name if user_folder_name else default_folder_name
+            except EOFError:
+                print(f"Running in non-interactive environment. Using default folder name: {default_folder_name}")
+                folder_name = default_folder_name
 
         full_path = os.path.join(self.results_folder, folder_name)
         os.makedirs(full_path, exist_ok=True)
