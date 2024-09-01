@@ -29,8 +29,7 @@ class QAGenerator:
             model=self.config.model,
         )
 
-        print(f"Request received")
-        print(f"Choices: {len(chat_completion.choices)}")
+        print(f"Request received  (chat completion choices: {len(chat_completion.choices)})")
 
         # Log the raw response
         pretty_response = self.pp.pformat(chat_completion)
