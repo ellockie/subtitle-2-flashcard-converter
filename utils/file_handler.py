@@ -40,11 +40,17 @@ class FileHandler:
         else:
             # Try to get user input, fall back to default if not possible
             try:
-                user_folder_name = input(
-                    f"Enter a name for the output folder (default: {default_folder_name}): "
-                ).strip()
+                suffix = (
+                    input(
+                        f"Enter a folder suffix (lecture name) (default: {default_folder_name}): "
+                    )
+                    .strip()
+                    .replace("	", ". ")
+                )
                 folder_name = (
-                    user_folder_name if user_folder_name else default_folder_name
+                    f"{default_folder_name} - {suffix}"
+                    if suffix
+                    else default_folder_name
                 )
             except EOFError:
                 print(
