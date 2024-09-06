@@ -1,6 +1,6 @@
 import requests
 
-from config.config import Config
+from config.config_light import ConfigLight
 from utils.file_handler import FileHandler
 
 SUBTITLES_FILENAME = "_input_subtitles.txt"
@@ -29,7 +29,7 @@ def main():
     #         return
 
     download_file(url, SUBTITLES_FILENAME)
-    config = Config()
+    config = ConfigLight()
     FileHandler(config)
 
 
