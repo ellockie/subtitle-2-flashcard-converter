@@ -1,4 +1,6 @@
 import requests
+import urllib
+import subprocess
 import sys
 import os
 import tkinter as tk
@@ -27,7 +29,13 @@ def download_file(url, filename):
 
 def submit():
     video_name = video_name_entry.get()
+    video_name = video_name.strip().replace("	", ". ")
     url = url_entry.get()
+    # Sanitize the URL
+    url = urllib.parse.unquote(url).strip()
+
+    print(f"\n video_name:  '{video_name}'")
+    print(f"        url:  {url}\n")
 
     if not video_name or not url:
         print("\n  Please enter both video name and URL.")
@@ -39,22 +47,27 @@ def submit():
     try:
         download_file(url, SUBTITLES_FILENAME)
         FileHandler(config)
+        # Run docker-compose up command
+        subprocess.run(["docker-compose", "up"], check=True)  # check=True raises an
     except Exception as e:
         print(f"\n  An error occurred: {e}")
 
 
-# def main():
-
 # Create main window
 root = tk.Tk()
 root.title("Subtitle Downloader")
+
+# Set window width
+root.geometry("1222x150")
 
 # Video Name Input
 video_name_label = ttk.Label(root, text="Video Name:")
 video_name_label.grid(row=0, column=0, padx=5, pady=5)
 
 video_name_entry = ttk.Entry(root)
-video_name_entry.grid(row=0, column=1, padx=5, pady=5)
+video_name_entry.grid(
+    row=0, column=1, padx=5, pady=5, sticky="ew"
+)  # Expand horizontally
 video_name_entry.bind(
     "<FocusIn>", lambda event: video_name_entry.selection_range(0, tk.END)
 )
@@ -64,17 +77,14 @@ url_label = ttk.Label(root, text="Subtitle URL:")
 url_label.grid(row=1, column=0, padx=5, pady=5)
 
 url_entry = ttk.Entry(root)
-url_entry.grid(row=1, column=1, padx=5, pady=5)
+url_entry.grid(row=1, column=1, padx=5, pady=5, sticky="ew")  # Expand horizontally
 url_entry.bind("<FocusIn>", lambda event: url_entry.selection_range(0, tk.END))
 
 # Submit Button
 submit_button = ttk.Button(root, text="Submit", command=submit)
 submit_button.grid(row=2, column=0, columnspan=2, pady=10)
 
+# Configure column weights to expand entry fields
+root.columnconfigure(1, weight=1)
+
 root.mainloop()
-
-
-# if __name__ == "__main__":
-#     main()
-# else:
-#     print(f"__name__:  {__name__}")
