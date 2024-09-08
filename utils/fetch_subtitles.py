@@ -28,13 +28,6 @@ def main():
     config = ConfigLight()
     config.video_name = ask_user_for_video_name(None)
     url = input("\n  Enter the URL of the file to download: ")
-
-    # if os.path.exists(SUBTITLES_FILENAME):
-    #     overwrite = input(f"\n  The file '{SUBTITLES_FILENAME}' already exists. Do you want to overwrite it? (y/n): ")
-    #     if overwrite.lower() != 'y':
-    #         print("\n  Download cancelled.")
-    #         return
-
     download_file(url, SUBTITLES_FILENAME)
     FileHandler(config)
 
