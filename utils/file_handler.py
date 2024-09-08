@@ -4,6 +4,7 @@ from datetime import datetime
 import shutil
 
 from constants.constants import OUTPUT_TYPE
+from utils.ask_user_for_video_name import ask_user_for_video_name
 
 
 class FileHandler:
@@ -12,6 +13,7 @@ class FileHandler:
         self.results_folder = "_results"
         self._ensure_results_folder_exists()
         self.input_hash = self._calculate_input_hash()
+        self.video_name = config.video_name
         self.output_folder = self._create_output_folder()
         self._copy_input_file()
 
@@ -40,16 +42,11 @@ class FileHandler:
         else:
             # Try to get user input, fall back to default if not possible
             try:
-                suffix = (
-                    input(
-                        f"Enter a folder suffix (lecture name) (default: {default_folder_name}): "
-                    )
-                    .strip()
-                    .replace("	", ". ")
-                )
+                if not self.video_name:
+                    self.video_name = ask_user_for_video_name(default_folder_name)
                 folder_name = (
-                    f"{default_folder_name} - {suffix}"
-                    if suffix
+                    f"{default_folder_name} - {self.video_name}"
+                    if self.video_name
                     else default_folder_name
                 )
             except EOFError:

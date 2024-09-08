@@ -1,6 +1,11 @@
 import requests
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath("../config/"))))
 
 from config.config_light import ConfigLight
+from utils.ask_user_for_video_name import ask_user_for_video_name
 from utils.file_handler import FileHandler
 
 SUBTITLES_FILENAME = "_input_subtitles.txt"
@@ -20,6 +25,8 @@ def download_file(url, filename):
 
 
 def main():
+    config = ConfigLight()
+    config.video_name = ask_user_for_video_name(None)
     url = input("\n  Enter the URL of the file to download: ")
 
     # if os.path.exists(SUBTITLES_FILENAME):
@@ -29,9 +36,10 @@ def main():
     #         return
 
     download_file(url, SUBTITLES_FILENAME)
-    config = ConfigLight()
     FileHandler(config)
 
 
 if __name__ == "__main__":
     main()
+else:
+    print(f"__name__:  {__name__}")

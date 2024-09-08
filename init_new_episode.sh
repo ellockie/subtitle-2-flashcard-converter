@@ -1,5 +1,5 @@
 #!/bin/bash
 set -e
 
-python ./fetch_subtitles.py
+python -m utils.fetch_subtitles
 docker-compose up # --build

@@ -13,3 +13,4 @@ class ConfigBase:
         self.compiled_qa_file = "qa_set_compiled.txt"
         self.qa_4_anki_file = "qa_4_anki.txt"
         self.config_path = "./config"
+        self.video_name = None
