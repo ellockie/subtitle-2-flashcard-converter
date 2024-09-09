@@ -48,7 +48,13 @@ def submit():
         download_file(url, SUBTITLES_FILENAME)
         FileHandler(config)
         # Run docker-compose up command
-        subprocess.run(["docker-compose", "up"], check=True)  # check=True raises an
+        subprocess.run(
+            ["docker-compose", "up"], check=True
+        )  # check=True raises an error if the command fails
+
+        # Clear form inputs if successful
+        video_name_entry.delete(0, tk.END)
+        url_entry.delete(0, tk.END)
     except Exception as e:
         print(f"\n  An error occurred: {e}")
 
