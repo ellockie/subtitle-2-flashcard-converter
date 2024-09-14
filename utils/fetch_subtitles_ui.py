@@ -5,6 +5,7 @@ import sys
 import os
 import tkinter as tk
 from tkinter import ttk
+from PIL import Image, ImageTk
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath("../config/"))))
 
@@ -62,6 +63,13 @@ def submit():
 # Create main window
 root = tk.Tk()
 root.title("Subtitle Downloader")
+
+# Load the image using Pillow
+image = Image.open("images/app-icon.png")
+icon = ImageTk.PhotoImage(image)
+
+# Set the window icon
+root.iconphoto(True, icon)
 
 # Set window width
 root.geometry("1222x150")
