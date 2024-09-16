@@ -16,6 +16,7 @@ from utils.file_handler import FileHandler
 SUBTITLES_FILENAME = "_input_subtitles.txt"
 
 last_loaded_version = -1  # Global variable to keep track of the latest loaded version
+last_filepath = ""
 
 
 def download_file(url, filename):
@@ -108,12 +109,18 @@ def find_latest_summary_file():
 
 
 def check_for_new_summary():
-    global last_loaded_version
+    global last_loaded_version, last_filepath
     filepath, version = find_latest_summary_file()
     if filepath is None or version is None:
         # Schedule the function to run again after 5 seconds
         root.after(5000, check_for_new_summary)
         return
+    if filepath != last_filepath:
+        last_filepath = filepath
+        last_loaded_version = 0
+        print(
+            f"[] version: {version} <= last_loaded_version: {last_loaded_version}.\n   last_filepath: {last_filepath}.\n   filepath: {filepath}"
+        )
 
     if version > last_loaded_version:
         try:
