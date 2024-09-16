@@ -1,2 +1,6 @@
-python-dotenv
+python-dotenv~=1.0.1
 openai==1.35.3
+
+Pillow~=10.0.1
+requests~=2.31.0
+DateTime~=4.3

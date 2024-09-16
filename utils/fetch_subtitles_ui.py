@@ -1,3 +1,9 @@
+# This is an older version of the UI-app. On 2024-09-16 it's been split into:
+#  - gui.py
+#  - summary_checker.py
+#  - downloader.py
+# BUT the split hasn't been verified, apart from confirmation that it's working
+
 import requests
 import urllib
 import subprocess
