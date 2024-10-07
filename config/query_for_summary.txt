@@ -1,5 +1,5 @@
 Based on the provided subtitles from a video, which is a part of an AWS Associate Developer certification preparation course, create a mindmap extracting of all and any item of knowledge relevant in the AWS Associate Developer exam.
 
-Generate a mindmap, where each 4-spaces indentation level denotes lower level in hierarchy. Don't draw the lines, use only spaces to indicate different levels in the hierarchy. Don't include either introduction nor final summary - generate only the mindmap, please. Aim to make it easy to remember.
+Generate a mindmap, where each 4-spaces indentation level denotes lower level in hierarchy. Don't draw the lines, use only spaces to indicate different levels in the hierarchy. Don't include either introduction nor final summary - generate only the mindmap, please. Don't include a generic, exam-related root node, like "AWS Associate Developer Exam Knowledge". Don't wrap the answer in triple quote strings. Aim to make it easy to remember, exhaustive, but emphasizing knowledge most likely to be testes in the exam.
 
 Subtitles:
