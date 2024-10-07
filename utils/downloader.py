@@ -41,10 +41,14 @@ def submit(video_name_entry, url_entry):
     config.video_name = video_name
 
     try:
+        print("__stage__1__")
         download_file(url, SUBTITLES_FILENAME)
+        print("__stage__2__")
         FileHandler(config)
+        print("__stage__3__")
         # Run docker-compose up command
         subprocess.run(["docker-compose", "up"], check=True)
+        print("__stage__4__")
         # Clear form inputs if successful
         video_name_entry.delete(0, tk.END)
         url_entry.delete(0, tk.END)
