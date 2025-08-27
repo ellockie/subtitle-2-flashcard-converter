@@ -1,0 +1,4 @@
+project:
+  name: "subt-2-flashcards"
+  python_version: "3.12.6"
+  main_filename: "main-ui.py"
