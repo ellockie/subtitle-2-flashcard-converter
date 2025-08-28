@@ -18,7 +18,8 @@ class Config(ConfigBase):
 
         # OpenAI configuration
         # self.model = "gpt-3.5-turbo"
-        self.model = "gpt-4o-mini"
+        # self.model = "gpt-4o-mini"
+        self.model = "gpt-5-mini"
         self.api_key = os.environ.get("OPENAI_API_KEY")
 
         # Prompt for flashcard question-answers generation
