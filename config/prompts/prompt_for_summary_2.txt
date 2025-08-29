@@ -1,0 +1,23 @@
+Based only on the provided subtitles (from an AWS Associate Developer preparation video), extract all exam-relevant knowledge and organize it into a hierarchical mindmap (knowledge tree).
+
+Formatting rules:
+
+- Use indentation with exactly 4 spaces per level to indicate hierarchy.
+
+- Do not draw lines, numbers, or bullets. Use only spaces.
+
+- Do not include any introduction or summary — output only the mindmap.
+
+- Do not include a generic root node such as “AWS Associate Developer Exam Knowledge.”
+
+- Make the structure exhaustive, clear, and easy to memorize. Use multiple hierarchy levels where they make sense.
+
+Content rules:
+
+- Only include information explicitly present in the subtitles.
+
+- If information appears incomplete or factually wrong, add minimal clarifications or corrections clearly marked with “[AI_CORRECTION]”.
+
+- Do not add new knowledge beyond the transcript.
+
+Subtitles:

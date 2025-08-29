@@ -1,7 +1,11 @@
-import os
 from dotenv import load_dotenv
-
 from config.config_base import ConfigBase
+from config.model_config import ModelConfig
+from config.prompts.prompt_config import (
+    PROMPTS_FOLDER,
+    PROMPT_FOR_QA_FILENAME,
+    PROMPT_FOR_SUMMARY_FILENAME,
+)
 
 
 class Config(ConfigBase):
@@ -13,24 +17,23 @@ class Config(ConfigBase):
         load_dotenv()
 
         # File paths
-        self.query_for_qa = f"{self.config_path}/query_for_qa.txt"
-        self.query_for_summary = f"{self.config_path}/query_for_summary.txt"
+        self.prompt_for_qa = f"{PROMPTS_FOLDER}/{PROMPT_FOR_QA_FILENAME}"
+        self.prompt_for_summary = f"{PROMPTS_FOLDER}/{PROMPT_FOR_SUMMARY_FILENAME}"
 
-        # OpenAI configuration
-        # self.model = "gpt-3.5-turbo"
-        # self.model = "gpt-4o-mini"
-        self.model = "gpt-5-mini"
-        self.api_key = os.environ.get("OPENAI_API_KEY")
+        # Model configuration
+        model_config = ModelConfig()
+        self.model = model_config.model
+        self.api_key = model_config.api_key
 
         # Prompt for flashcard question-answers generation
-        with open(self.query_for_qa, "r") as query_file:
-            query = query_file.read()
-            self.qa_prompt = query
+        with open(self.prompt_for_qa, "r") as prompt_file:
+            prompt = prompt_file.read()
+            self.qa_prompt = prompt
 
         # Prompt for content summary
-        with open(self.query_for_summary, "r") as query_file:
-            query = query_file.read()
-            self.summary_prompt = query
+        with open(self.prompt_for_summary, "r") as prompt_file:
+            prompt = prompt_file.read()
+            self.summary_prompt = prompt
 
         # Validate API key
         if not self.api_key:

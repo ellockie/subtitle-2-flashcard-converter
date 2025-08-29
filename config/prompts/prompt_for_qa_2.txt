@@ -1,0 +1,27 @@
+Based only on the provided subtitles (from an AWS Associate Developer preparation video), generate a set of flashcard questions and answers covering all exam-relevant knowledge.
+
+Formatting rules:
+
+- Use the format:
+
+Q: question_text
+A: answer_text
+
+
+- Place a blank line between each Q/A pair.
+
+- Do not include any introduction or summary — output only the flashcards.
+
+Content rules:
+
+- Only include information explicitly present in the subtitles.
+
+- Questions should be direct, clear, and test recall of key facts or concepts.
+
+- Avoid generic or obvious filler questions.
+
+- If any information in the subtitles is incomplete or factually wrong, add minimal clarifications or corrections clearly marked with “[AI_CORRECTION]”.
+
+- Do not add new knowledge beyond the subtitles.
+
+Subtitles:
