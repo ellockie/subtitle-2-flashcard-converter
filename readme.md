@@ -14,10 +14,11 @@
    - Copy the request URL
    - Run the `fetch_subtitles.py` script, paste the URL when asked
    - Paste the name of the episode / subfolder, when asked
-3. Run the generator, several times using the command: `docker-compose up --build`
-4. Pick the best QA sets
+3. ~~Run the generator, several times using the command: `docker-compose up --build`~~
+4. Copy the resulting mindmap summary, either from the UI, or from the relevant folder
+  - use: `qa_2_anki_converter.py _results/<video_folder>/summary_v#.txt`
+5. Pick the best QA sets
  - from: `_qa_set_v#.txt`
  - into: `qa_set_compiled.txt`
-5. Import into Anki
-  - use: `qa_2_anki_converter.py <correct_folder>/qa_4_anki.txt`
-`
+6. Import into Anki
+  - use: `qa_2_anki_converter.py _results/<video_folder>/qa_sets/_qa__set_v#.txt`
