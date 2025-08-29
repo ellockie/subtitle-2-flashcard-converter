@@ -136,7 +136,7 @@ def check_for_new_summary():
             summary_text_widget.delete("1.0", tk.END)
             summary_text_widget.insert("1.0", content)
             last_loaded_version = version
-            print(f"Loaded new summary file version {version}")
+            print(f"(UI) Loaded new summary file version {version}")
         except Exception as e:
             print(f"Failed to read summary file: {e}")
 

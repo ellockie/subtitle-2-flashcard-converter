@@ -47,10 +47,12 @@ def submit(video_name_entry, url_entry):
         FileHandler(config)
         print("__stage__3__")
         # Run docker-compose up command
-        subprocess.run(["docker-compose", "up"], check=True)
+        # subprocess.run(["docker-compose", "up"], check=True)
+        subprocess.run(["python", "main.py"], check=True)
         print("__stage__4__")
         # Clear form inputs if successful
         video_name_entry.delete(0, tk.END)
         url_entry.delete(0, tk.END)
+        print("__  DONE  __")
     except Exception as e:
         print(f"\n  An error occurred: {e}")
